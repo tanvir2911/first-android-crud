@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import kotlin.Suppress;
 
 public class Database extends SQLiteOpenHelper {
     public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -54,6 +61,31 @@ public class Database extends SQLiteOpenHelper {
         db.insert("student",null,values);
         db.close();
     }
+
+    public ArrayList<HashMap<String,String>> getStudents(){
+        HashMap<String, String> student;
+        SQLiteDatabase db = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor c = db.rawQuery("select * from student", null);
+
+        ArrayList<HashMap<String,String>> studentList = new ArrayList<>(c.getCount());
+
+        if(c.moveToFirst()){
+            do{
+                student = new HashMap<>();
+                student.put("name", c.getString(1));
+                student.put("department", c.getString(2));
+                student.put("address", c.getString(3));
+                student.put("phone",c.getString(4));
+                student.put("gender",c.getString(5));
+
+                studentList.add(student);
+            }while (c.moveToNext());
+        }
+
+        db.close();
+        return studentList;
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

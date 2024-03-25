@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Logged In ", Toast.LENGTH_LONG).show();
                         Toast.makeText(getApplicationContext(),"Email: "+email1+
                                 ", Password: "+pass, Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Login.this, StudentRegistration.class));
+                        startActivity(new Intent(Login.this, Home.class));
                     }else{
                         Toast.makeText(getApplicationContext(),"Wrong data", Toast.LENGTH_LONG).show();
                     }
