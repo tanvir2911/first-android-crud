@@ -131,7 +131,7 @@
                     android:layout_width="61dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Add \nStudent"
+                    android:text="Add \nEmployee"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -167,7 +167,7 @@
                     android:layout_width="61dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Add \nStudent"
+                    android:text="Employee \nList"
                     android:textAlignment="center" />
 
             </LinearLayout>

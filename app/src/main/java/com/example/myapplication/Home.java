@@ -15,6 +15,8 @@ public class Home extends AppCompatActivity {
 
     CardView card1;
     CardView card2;
+    CardView card3;
+    CardView card4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class Home extends AppCompatActivity {
 
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
+        card3 = findViewById(R.id.card3);
+        card4 = findViewById(R.id.card4);
 
 
         card1.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +43,20 @@ public class Home extends AppCompatActivity {
         });
 
         card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, StudentList.class));
+            }
+        });
+
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, AddEmployee.class));
+            }
+        });
+
+        card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Home.this, StudentList.class));

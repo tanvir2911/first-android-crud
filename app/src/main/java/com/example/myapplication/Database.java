@@ -28,8 +28,12 @@ public class Database extends SQLiteOpenHelper {
         String studentQuery = "create table student(id integer PRIMARY KEY AUTOINCREMENT,"+
                 " name text, department text, address text, phone text, gender text, active text)";
 
+        String addEmployee = "create table employee(id integer PRIMARY KEY AUTOINCREMENT,"+
+                " name text, address text, age text, gender text)";
+
         db.execSQL(userQuery);
         db.execSQL(studentQuery);
+        db.execSQL(addEmployee);
     }
     
     
@@ -104,5 +108,44 @@ public class Database extends SQLiteOpenHelper {
             return 1;
         }
         return 0;
+    }
+
+    public void addNewEmployee(String name, String address, String age, String gender) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("name", name);
+        values.put("address",address);
+        values.put("age",age);
+        values.put("gender",gender);
+
+        db.insert("employee",null,values);
+        db.close();
+    }
+
+
+    public ArrayList<HashMap<String,String>> getEmployees(){
+        HashMap<String, String> employee;
+        SQLiteDatabase db = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor c = db.rawQuery("select * from employee", null);
+
+        ArrayList<HashMap<String,String>> empList = new ArrayList<>(c.getCount());
+
+        if(c.moveToFirst()){
+            do{
+                employee = new HashMap<>();
+                employee.put("id", c.getString(0));
+                employee.put("name", c.getString(1));
+                employee.put("address", c.getString(2));
+                employee.put("age",c.getString(3));
+                employee.put("gender",c.getString(4));
+
+                empList.add(employee);
+            }while (c.moveToNext());
+        }
+
+        db.close();
+        return empList;
     }
 }
