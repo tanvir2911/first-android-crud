@@ -148,4 +148,9 @@ public class Database extends SQLiteOpenHelper {
         db.close();
         return empList;
     }
+
+    public void deleteEmployee(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete("employee","id=?",new String[]{String.valueOf(id)});
+    }
 }

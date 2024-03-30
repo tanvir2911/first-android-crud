@@ -36,17 +36,12 @@ public class EmployeeList extends AppCompatActivity {
         list = new ArrayList<>();
         list = db.getEmployees();
 
+        System.out.println(list.size()+"--------------------------------------");
         sa = new SimpleAdapter(this,
                 list,
                 R.layout.employee_list,
                 new String[]{"id", "name", "address", "age", "gender"},
-                new int[]{R.id.id, R.id.name, R.id.address, R.id.age, R.id.gender}){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-               View v= super.getView(position, convertView, parent);
-                return v;
-            }
-        };
+                new int[]{R.id.id, R.id.name, R.id.address, R.id.age, R.id.gender});
 
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(sa);

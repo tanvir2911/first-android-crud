@@ -59,7 +59,7 @@ public class Home extends AppCompatActivity {
         card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this, StudentList.class));
+                startActivity(new Intent(Home.this, EmployeeList.class));
             }
         });
     }
