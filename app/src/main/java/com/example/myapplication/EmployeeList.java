@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EmployeeList extends AppCompatActivity {
 
@@ -41,7 +43,40 @@ public class EmployeeList extends AppCompatActivity {
                 list,
                 R.layout.employee_list,
                 new String[]{"id", "name", "address", "age", "gender"},
-                new int[]{R.id.id, R.id.name, R.id.address, R.id.age, R.id.gender});
+                new int[]{R.id.id, R.id.name, R.id.address, R.id.age, R.id.gender})
+        {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+
+                ImageView editBtn = v.findViewById(R.id.edit_btn);
+                ImageView deleteBtn = v.findViewById(R.id.delete_btn);
+
+                editBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.out.println("Edit Button clicked");
+                    }
+                });
+
+                deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.out.println("Delete Button clicked"+position);
+                        HashMap<String, String> employee = (HashMap<String, String>) list.get(position);
+
+                        db.deleteEmployee(Integer.parseInt(employee.get("id")));
+
+                        list.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+
+
+                return v;
+            }
+        };
 
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(sa);

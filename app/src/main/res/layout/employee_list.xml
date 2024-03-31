@@ -58,5 +58,23 @@
             android:textColor="@color/black"
             android:textSize="13sp" />
 
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/edit"
+                android:id="@+id/edit_btn"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete"
+                android:id="@+id/delete_btn"
+                />
+
+
+
+
     </LinearLayout>
 </LinearLayout>
