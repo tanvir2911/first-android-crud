@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,20 @@ public class EmployeeList extends AppCompatActivity {
                 editBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println("Edit Button clicked");
+                        HashMap<String, String > employee = null;
+                        try {
+                            employee = (HashMap<String, String>) list.get(position);
+                        }catch (Exception e){
+                        }
+                        Intent intent = new Intent(EmployeeList.this, AddEmployee.class);
+
+                        intent.putExtra("id", employee.get("id"));
+                        intent.putExtra("name", employee.get("name"));
+                        intent.putExtra("address", employee.get("address"));
+                        intent.putExtra("age", employee.get("age"));
+                        intent.putExtra("gender", employee.get("gender"));
+
+                        startActivity(intent);
                     }
                 });
 

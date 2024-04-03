@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,7 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".DrawerNav"
+            android:exported="false"
+            android:label="@string/title_activity_drawer_nav"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
         <activity
             android:name=".EmployeeList"
             android:exported="false" />
@@ -25,7 +36,7 @@
             android:name=".StudentRegistration"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".ApiCall"
             android:exported="false" />
         <activity
             android:name=".MainActivity3"
@@ -40,7 +51,7 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -86,12 +86,13 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="107dp"
+        android:layout_width="87dp"
         android:layout_height="33dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -153,4 +153,17 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.delete("employee","id=?",new String[]{String.valueOf(id)});
     }
+
+    public void updateEmployee(int id, String name, String address, String age, String gender){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("name", name);
+        values.put("address",address);
+        values.put("age",age);
+        values.put("gender",gender);
+
+        sqLiteDatabase.update("employee", values, "id = ?", new String[]{id+""});
+        sqLiteDatabase.close();
+    }
 }

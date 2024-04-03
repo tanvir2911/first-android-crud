@@ -27,6 +27,15 @@ public class AddEmployee extends AppCompatActivity {
     Button submit;
     TextView backToHome;
 
+
+
+    String updateId =null;
+    String updateName = null;
+    String updateAddress = null;
+    String updateAge = null;
+    String updateGender = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,20 @@ public class AddEmployee extends AppCompatActivity {
         backToHome = findViewById(R.id.backToHome);
 
         gender.clearCheck();
+
+
+
+        Intent intent =getIntent();
+        updateId = intent.getStringExtra("id");
+        updateName = intent.getStringExtra("name");
+        updateAddress = intent.getStringExtra("address");
+        updateAge = intent.getStringExtra("age");
+        updateGender = intent.getStringExtra("gender");
+
+        name.setText(updateName);
+        address.setText(updateAddress);
+        age.setText(updateAge);
+
 
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -73,8 +96,16 @@ public class AddEmployee extends AppCompatActivity {
                     RadioButton radioButton = (RadioButton) gender.findViewById(selectedId);
                     String gender1 = radioButton.getText().toString();
 
-                    db.addNewEmployee(name1, address1, age1,  gender1  );
-                    Toast.makeText(getApplicationContext(),"Employee added to database.", Toast.LENGTH_SHORT).show();
+                    if(updateId != null){
+                        db.updateEmployee(Integer.valueOf(updateId),name1, address1, age1,  gender1);
+                        startActivity(new Intent(AddEmployee.this, EmployeeList.class));
+                    }else{
+                        db.addNewEmployee(name1, address1, age1,  gender1  );
+                        Toast.makeText(getApplicationContext(),"Employee added to database.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddEmployee.this, EmployeeList.class));
+                    }
+
+
 
                     name.setText("");
                     address.setText("");
